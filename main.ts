@@ -19,9 +19,9 @@ serve(async (request) => {
   }
   const key = request.headers.get("Authorization");
   console.log("method:", method);
-  console.log(key);
+  console.log("key:",key);
   console.log("request:", request);
-  
+
   if (url.pathname === "/") {
     return fetch(new URL("./README.md", import.meta.url));
   }
