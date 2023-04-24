@@ -5,7 +5,7 @@ serve(async (request) => {
   const url = new URL(request.url);
   const key = request.headers.get("Authorization");
   console.log("request:", request);
-  const method = request.url.method;
+  const method = request.method;
   console.log("method:", method);
   if (method === "OPTIONS") {
     return new Response("success");
