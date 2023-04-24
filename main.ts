@@ -16,9 +16,17 @@ serve(async (request) => {
   }
 
   if (method === "OPTIONS") {
-    return new Response("success",options);
+    const body = JSON.stringify({ message: "success" });
+    return new Response(body, {
+      status: 200,
+      headers: {
+        "Access-Control-Request-Headers": "*",
+        "Access-Control-Request-Method": "*",
+        "Access-Control-Allow-Origin": "*"
+      },
+    });
   }
-  
+
   if (url.pathname === "/") {
     return fetch(new URL("./README.md", import.meta.url));
   }
