@@ -3,11 +3,8 @@ import { serve } from "https://deno.land/std@0.184.0/http/server.ts";
 const OPENAI_API_HOST = "api.openai.com";
 serve(async (request) => {
   const url = new URL(request.url);
-  const key = request.headers.get("Authorization");
-  console.log("request:", request);
   const method = request.method;
-  console.log("method:", method);
-  console.log(key);
+
 
   if (method === "OPTIONS") {
     const body = JSON.stringify({ message: "success" });
@@ -20,7 +17,11 @@ serve(async (request) => {
       },
     });
   }
-
+  const key = request.headers.get("Authorization");
+  console.log("method:", method);
+  console.log(key);
+  console.log("request:", request);
+  
   if (url.pathname === "/") {
     return fetch(new URL("./README.md", import.meta.url));
   }
