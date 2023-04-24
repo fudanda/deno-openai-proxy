@@ -6,6 +6,10 @@ serve(async (request) => {
   const key=request.headers.get('Authorization');
   console.log("request:", request);
 
+  const method=request.url.method;
+  if(method==='OPTIONS'){
+    return new Response("success");
+  }
   if (url.pathname === "/") {
     return fetch(new URL("./README.md", import.meta.url));
   }
