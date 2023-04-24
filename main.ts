@@ -14,6 +14,8 @@ serve(async (request) => {
         "Access-Control-Request-Headers": "*",
         "Access-Control-Request-Method": "*",
         "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Methods": "*",
       },
     });
   }
