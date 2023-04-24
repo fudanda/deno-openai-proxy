@@ -7,6 +7,7 @@ serve(async (request) => {
   console.log("request:", request);
   const method = request.method;
   console.log("method:", method);
+  console.log(key);
 
   if (method === "OPTIONS") {
     const body = JSON.stringify({ message: "success" });
@@ -23,7 +24,6 @@ serve(async (request) => {
   if (url.pathname === "/") {
     return fetch(new URL("./README.md", import.meta.url));
   }
-  console.log(key);
   url.host = OPENAI_API_HOST;
   const r = fetch(url, {
     headers: {
