@@ -11,9 +11,7 @@ serve(async (request) => {
     return new Response(body, {
       status: 200,
       headers: {
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": request.headers.get('origin'),
         "Access-Control-Allow-Headers": "*",
         "Access-Control-Allow-Methods": "*",
       },
@@ -29,9 +27,10 @@ serve(async (request) => {
   }
   url.host = OPENAI_API_HOST;
   const r = fetch(url, {
-    mode: 'no-cors',
     headers: {
       "Authorization": key,
+      "Content-Type": "application/json",
+      Accept: "application/json",
     },
   });
   console.log(r);
