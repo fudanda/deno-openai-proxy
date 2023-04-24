@@ -20,7 +20,7 @@ serve(async (request) => {
     return new Response(body, {
       status: 200,
       headers: {
-        "Access-Control-Request-Headers": "*",
+        "Access-Control-Request-Headers": "Authorization",
         "Access-Control-Request-Method": "*",
         "Access-Control-Allow-Origin": "*"
       },
