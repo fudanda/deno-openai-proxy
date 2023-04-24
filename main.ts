@@ -10,7 +10,7 @@ serve(async (request) => {
   console.log("request:", request);
 
   if (url.pathname === "/") {
-    return fetch(new URL("./Readme.md", import.meta.url));
+    return fetch(new URL("./README.md", import.meta.url));
   }
   const key =('Bearer '+url.searchParams.get('key'))  as string;
   url.host = OPENAI_API_HOST;
