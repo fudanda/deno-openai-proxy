@@ -8,21 +8,14 @@ serve(async (request) => {
   const method = request.method;
   console.log("method:", method);
 
-  var options = {
-    headers: {
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Request-Method": "*"
-    },
-  }
-
   if (method === "OPTIONS") {
     const body = JSON.stringify({ message: "success" });
     return new Response(body, {
       status: 200,
       headers: {
-        "Access-Control-Request-Headers": "Authorization",
+        "Access-Control-Request-Headers": "*",
         "Access-Control-Request-Method": "*",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
       },
     });
   }
@@ -30,11 +23,13 @@ serve(async (request) => {
   if (url.pathname === "/") {
     return fetch(new URL("./README.md", import.meta.url));
   }
-
+  console.log(key);
   url.host = OPENAI_API_HOST;
-  return await fetch(url, {
+  const r = fetch(url, {
     headers: {
       "Authorization": key,
     },
   });
+  console.log(r);
+  return await r;
 });
