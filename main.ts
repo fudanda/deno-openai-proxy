@@ -7,9 +7,18 @@ serve(async (request) => {
   console.log("request:", request);
   const method = request.method;
   console.log("method:", method);
-  if (method === "OPTIONS") {
-    return new Response("success");
+
+  var options = {
+    headers: {
+        "Access-Control-Request-Headers": "*",
+        "Access-Control-Request-Method": "*"
+    },
   }
+
+  if (method === "OPTIONS") {
+    return new Response("success",options);
+  }
+  
   if (url.pathname === "/") {
     return fetch(new URL("./README.md", import.meta.url));
   }
