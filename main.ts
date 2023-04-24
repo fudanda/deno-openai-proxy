@@ -29,6 +29,7 @@ serve(async (request) => {
   }
   url.host = OPENAI_API_HOST;
   const r = fetch(url, {
+    mode: 'no-cors',
     headers: {
       "Authorization": key,
     },
